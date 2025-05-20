@@ -1,0 +1,29 @@
+// 1)	Qual a função dos operadores & e * quando associados a ponteiros? Exemplifique com código em C.
+// 2)	Por que é importante inicializar um ponteiro antes do seu uso?
+// 3)	As variáveis são sempre armazenadas nos mesmos endereços?
+// 4)	O que é indireção?
+// 5)	Como o compilador distingue o * usado para a multiplicação do * usado para “desreferenciamento” (acesso às informações existentes no endereço contido em um ponteiro) e do * usado
+//      para declarar um ponteiro?
+
+
+//  o operador & tem a função de buscar o endereco de memoria do objeto referido, seja a variavel ou ate do ponteiro ou mesmo da variavel alocada no ponteiro no caso de &*p
+// enquanto o operador * serve para inicializar ou referenciar um ponteiro 
+int a = 5;
+int *p = &a;
+
+// 2)	Por que é importante inicializar um ponteiro antes do seu uso?
+// caso o ponteiro nao seja inicializado ele contera um valor indefinido, caso tente acessar um valor apontado por um ponteiro
+// nao inicializado pode acabar acessando memoria invalida e causar falha no programa
+
+// 3) Não, o endereço de cada variavel pode mudar com cada execução do programa, variar dependendo do SO ou do compilador, assim como
+// a ordem de declaração da variavel 
+
+// 4) é quando accessamos uma variavel atraves de um ponteiro
+int c = 10;
+int *p2 = &c; 
+int b = *p2;  
+
+// 5) ele diferencia pelo contexto, quando utilizado junto a inicializacao de uma variavel significa a declaracao de um ponteiro
+// quando utiliado em meio a uma operação sem conexao a declaracao da varival ele tem contexto de multiplicador
+int resultado = 2 * 3; // multiplica
+int *t; //incializa ponteiro
