@@ -1,51 +1,39 @@
 #include <stdio.h>
-float euler_iterativa(int n);
-float fat(int x);
-float euler_recursiva(int n);
+#include <stdlib.h>
+#include <string.h>
 
+char *vogaiss(char *s) {
+    int i, j = 0, cont = 0;
+
+    // 1ª passada: conta as vogais usando strchr
+    for (i = 0; s[i]; i++) {
+        if (strchr("aeiou", s[i])) {
+            cont++;
+        }
+    }
+
+    char *nova = malloc((cont + 1) * sizeof(char));
+    if (!nova) return NULL;
+
+    // 2ª passada: copia as vogais
+    for (i = 0; s[i]; i++) {
+        if (strchr("aeiou", s[i])) {
+            nova[j++] = s[i];
+        }
+    }
+
+    nova[j] = '\0';
+    return nova;
+}
 
 int main() {
-    int n;
+    char s[] = "otorrinolaringologista";
+    char *resultado = vogaiss(s);
 
-    scanf("%d", &n);
-    if (n == 0) {
-        printf("1.00");
-    } else if(n == 1){
-        printf("2.00");
-    } else {
-        float eulerIterativo = euler_iterativa(n);
-        printf("Iterativo: %.2f \n", eulerIterativo);
+    if (resultado) {
+        printf("Vogais: %s\n", resultado);
+        free(resultado);
     }
-    printf("------------------------------ \n");
-    
-    float eulerrec = euler_recursiva(n);
-    printf("RECURSIVO: %.2f \n", eulerrec);
+
     return 0;
-}
-
-float euler_iterativa(int n){
-    float e = 2;
-    for (int i = 2; i <= n; i++) e += 1/fat(i);
-
-    printf("Euler: %.2f \n", e);
-    return e;
-}
-
-float fat(int x) {
-    float resultado = 0;
-    for (int i = x-1; i > 0; i--) resultado += x * i;
-    
-    printf("Fat: %.2f \n", resultado);
-    return resultado;
-}
-
-
-float euler_recursiva(int n){
-    if (n == 0) {
-        return 1.00;
-    } else if (n == 1) {
-        return 2.00;
-    } else {
-        return (1.0 / fat(n)) + euler_recursiva(n - 1);
-    }
 }
